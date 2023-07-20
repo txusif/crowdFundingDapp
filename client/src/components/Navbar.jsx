@@ -40,8 +40,10 @@ function Navbar() {
 
             {/*Small screen navigation*/}
             <div className="sm:hidden flex justify-between items-center relative">
-                <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-                    <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
+                <div>
+                    <Link to="/" className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
+                        <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
+                    </Link>
                 </div>
 
                 <img
@@ -82,9 +84,13 @@ function Navbar() {
                             title={address ? "Create a campaign" : "Connect wallet"}
                             styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
                             handleClick={() => {
-                                if (address) navigate("create-campaign")
+                                if (address) {
+                                    navigate("create-campaign");
+                                    setToggleDrawer(false);
+                                }
                                 else connect();
                             }}
+
                         />
                     </div>
 

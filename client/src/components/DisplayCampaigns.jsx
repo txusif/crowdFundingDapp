@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import { FundCard } from "../components";
 
 import { loader } from "../assets";
@@ -8,7 +9,7 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
     const navigate = useNavigate();
 
     const handleNavigate = (campaign) => {
-        navigate("/campaign-details/${campaign.title}", { state: campaign });
+        navigate(`/campaign-details/${campaign.title}`, { state: campaign });
     }
 
     return (
@@ -18,8 +19,9 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
             </h1>
 
             <div className="flex flex-wrap mt-[20px] gap-[26px]">
+
                 {isLoading && (
-                    <img src={loader} alt="loader" className="w-[100px] h-[100px] object-contain" />
+                    <img src={loader} alt="loader" className="w-full h-[100px] object-contain" />
                 )}
 
                 {!isLoading && campaigns.length === 0 && (
@@ -31,7 +33,7 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
                 {!isLoading && campaigns.length > 0 &&
                     campaigns.map((campaign) =>
                         <FundCard
-                            key={campaign.id}
+                            ey={uuidv4()}
                             {...campaign}
                             handleClick={() => handleNavigate(campaign)}
                         />
