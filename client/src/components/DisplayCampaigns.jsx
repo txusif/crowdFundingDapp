@@ -33,7 +33,7 @@ function DisplayCampaigns({ title, isLoading, campaigns }) {
                 {!isLoading && campaigns.length > 0 &&
                     campaigns.map((campaign) =>
                         <FundCard
-                            ey={uuidv4()}
+                            key={uuidv4()}
                             {...campaign}
                             handleClick={() => handleNavigate(campaign)}
                         />
